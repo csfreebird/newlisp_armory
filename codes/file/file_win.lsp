@@ -2,17 +2,17 @@
 (context 'file)
 
 ;; get the file name without path
-(define (file-name file-full-path)
-  (unless (file? file-full-path) (throw-error (append "file doesn't exist, file-full-path:" file-full-path)))
-  (if (directory? file-full-path) (throw-error (append "file-full-path can't be a folder path, file-full-path:" file-full-path)))
-  (first (regex "[^\\\\]*$" file-full-path))
+(define (file-name full-path)
+  (unless (file? full-path) (throw-error (append "file doesn't exist, full-path:" full-path)))
+  (if (directory? full-path) (throw-error (append "full-path can't be a folder path, full-path:" full-path)))
+  (first (regex "[^\\\\]*$" full-path))
 )
 
 ;; get the folder name without path
-(define (folder-name file-full-path)
-  (unless (file? file-full-path) (throw-error (append "file doesn't exist, file-full-path:" file-full-path)))
-  (unless (directory? file-full-path) (throw-error (append "file-full-path must be a folder path, file-full-path:" file-full-path)))
-  (first (regex "[^\\\\]*$" file-full-path))
+(define (folder-name full-path)
+  (unless (file? full-path) (throw-error (append "file doesn't exist, full-path:" full-path)))
+  (unless (directory? full-path) (throw-error (append "full-path must be a folder path, full-path:" full-path)))
+  (first (regex "[^\\\\]*$" full-path))
 )
 
 ;; copy the src folder to dest/src recursively
