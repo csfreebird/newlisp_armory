@@ -8,11 +8,17 @@
   (first (regex "[^\\\\]*$" full-path))
 )
 
+(define (remove-last-seperator path)
+  (if (ends-with path "\\\\")
+      (replace "\\\\$" path "" 0)
+      path)
+  )
+
 ;; get the folder name without path
 (define (folder-name full-path)
   (unless (file? full-path) (throw-error (append "file doesn't exist, full-path:" full-path)))
   (unless (directory? full-path) (throw-error (append "full-path must be a folder path, full-path:" full-path)))
-  (first (regex "[^\\\\]*$" full-path))
+  (first (regex "[^/]*$" (remove-last-seperator folder-path)))
 )
 
 ;; copy the src folder to dest/src recursively

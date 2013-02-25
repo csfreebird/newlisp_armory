@@ -20,7 +20,7 @@
 (define (folder-name folder-path)
   (unless (file? folder-path) (throw-error (append "folder doesn't exist, folder-path:" folder-path)))
   (unless (directory? folder-path) (throw-error (append "argument must be a folder path, folder-path:" folder-path)))
-  (first (regex "[^/]*$" folder-path))
+  (first (regex "[^/]*$" (remove-last-seperator folder-path)))
   )
 
 ;; copy the src folder to dest/src recursively
