@@ -3,18 +3,25 @@
 
 
 ;; get the file name without path
-(define (file-name full-path)
-  (unless (file? full-path) (throw-error (append "file doesn't exist, full-path:" full-path)))
-  (if (directory? full-path) (throw-error (append "full-path can't be a folder path, full-path:" full-path)))
-  (first (regex "[^/]*$" full-path))
-)
+(define (file-name file-path)
+  (unless (file? file-path) (throw-error (append "file doesn't exist, file-path:" file-path)))
+  (if (directory? file-path) (throw-error (append "full-path can't be a folder path, file-path:" file-path)))
+  (first (regex "[^/]*$" file-path))
+  )
+
+(define (remove-last-seperator path)
+  (if (ends-with path "/")
+      (replace "/$" path "" 0)
+      path)
+  )
+
 
 ;; get the folder name without path
-(define (folder-name full-path)
-  (unless (file? full-path) (throw-error (append "file doesn't exist, full-path:" full-path)))
-  (unless (directory? full-path) (throw-error (append "full-path must be a folder path, full-path:" full-path)))
-  (first (regex "[^/]*$" full-path))
-)
+(define (folder-name folder-path)
+  (unless (file? folder-path) (throw-error (append "folder doesn't exist, folder-path:" folder-path)))
+  (unless (directory? folder-path) (throw-error (append "argument must be a folder path, folder-path:" folder-path)))
+  (first (regex "[^/]*$" folder-path))
+  )
 
 ;; copy the src folder to dest/src recursively
 ;; both src and dest must be existing folders, otherwise an exception will be thrown out
@@ -25,4 +32,5 @@
   (unless (directory? src) (throw-error (append "src is not a directory, src:" src)))
   (unless (file? dest) (throw-error (append "dest folder doesn't exist, dest:" dest)))
   (unless (directory? dest) (throw-error (append "dest is not a directory, dest:" dest)))
-  (exec (append "cp -r " src " " dest)))
+  (exec (append "cp -r " src " " dest))
+  )
