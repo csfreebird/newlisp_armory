@@ -34,3 +34,7 @@
   (unless (directory? dest) (throw-error (append "dest is not a directory, dest:" dest)))
   (exec (append "cp -r " src " " dest))
   )
+
+(define (create-link src dst)
+  (if (file? dst) (rm dst)
+      (exec (append "ln -s " src " " dst))))
