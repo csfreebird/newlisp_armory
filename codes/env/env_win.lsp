@@ -6,7 +6,7 @@
 ;; also export the environment for subsequently executed commands
 (define (set-sys-env str-name str-value)
   (env str-name str-value)
-  (exec (append "setx " str-name " " str-value " /m"))
+  (exec (append "setx " str-name " \"" str-value "\" /m"))
   )
 
 
