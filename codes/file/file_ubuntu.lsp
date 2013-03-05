@@ -38,3 +38,9 @@
 (define (create-link src dst)
   (if (file? dst) (rm dst)
       (exec (append "ln -s " src " " dst))))
+
+(define (remove-folder dst)
+  (unless (file? dst) (throw-error (append "dst folder doesn't exist, dst:" dst)))
+  (unless (directory? dst) (throw-error (append "dst is not a directory, dst:" dst)))
+  (exec (append "rm -rf " dst))
+  )
