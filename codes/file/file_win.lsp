@@ -30,6 +30,10 @@
   (unless (directory? src) (throw-error (append "src is not a directory, src:" src)))
   (unless (file? dest) (throw-error (append "dest folder doesn't exist, dest:" dest)))
   (unless (directory? dest) (throw-error (append "dest is not a directory, dest:" dest)))
-  (println (append "XCOPY " src " " dest "\\" src))
-  (exec (append "XCOPY " src " " dest "\\" src "/I /0 /X /E /H /K")))
+  (exec (append "ROBOCOPY " src " " dest " *.* /E")))
 
+(define (remove-folder dst)
+  (unless (file? dst) (throw-error (append "dst folder doesn't exist, dst:" dst)))
+  (unless (directory? dst) (throw-error (append "dst is not a directory, dst:" dst)))
+  (exec (append "rmdir /S/Q " dst))
+  )
