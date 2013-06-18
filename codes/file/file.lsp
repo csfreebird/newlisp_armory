@@ -17,4 +17,11 @@
    (throw-error (append "file tool doesn't support this OS for now, ostype:" ostype))
    ))
 
+
+;; get the folder name without path
+(define (folder-name folder-path)
+  (unless (file? folder-path) (throw-error (append "folder doesn't exist, folder-path:" folder-path)))
+  (unless (directory? folder-path) (throw-error (append "argument must be a folder path, folder-path:" folder-path)))
+  (first (regex "[^/]*$" (remove-last-seperator folder-path))))
+
 (init)

@@ -59,5 +59,12 @@
 (println (append "remove-last-seperator test succeeded, path is: " fpath))
 (print-seperator-line)
 
+(println "test folder-name ...")
+(unless (catch (set 'folder-name (file:folder-name (append (real-path) "/"))) 'result)
+	(println (append "catch error: " result))
+	(println "test failed"))
+(println (append "folder-name test succeeded, folder name is: " folder-name))
+(print-seperator-line)
+
 
 (exit)
