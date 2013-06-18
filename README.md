@@ -9,8 +9,9 @@ armory includes the newlisp binary for Ubuntu and Windows, also some common newl
 
 ## installation guide for Ubuntu 64 bit
 
-1. cd install/ubuntu/12.10_64/
+1. cd install/ubuntu/64bit
 
-2. sudo ./setup.sh or just execute the command directly sudo cp ./newlisp /usr/bin/
+2. sudo ./setup.sh or just execute the command directly `sudo cp ./newlisp /usr/bin/`
+
 
 
