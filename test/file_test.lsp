@@ -66,5 +66,18 @@
 (println (append "folder-name test succeeded, folder name is: " folder-name))
 (print-seperator-line)
 
+(println "test remove-folder ...")
+(let (test-dir (append (real-path) "/tt"))
+  (make-dir test-dir)
+  (if (directory? test-dir)
+      (begin
+	(file:remove-folder test-dir)
+	(if (file? test-dir)
+	    (println "remove-folder failed")
+	    (println "remove-folder succeeded")))
+      (begin
+	(println "remove-folder failed"))))
+(print-seperator-line)
+
 
 (exit)

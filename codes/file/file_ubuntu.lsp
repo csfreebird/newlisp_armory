@@ -12,6 +12,12 @@
   (if (ends-with path "/")
       (replace "/$" path "" 0) path))
 
+;; throw error if dst is invalid
+(define (remove-folder dst)
+  (unless (file? dst) (throw-error (append "dst folder doesn't exist, dst:" dst)))
+  (unless (directory? dst) (throw-error (append "dst is not a directory, dst:" dst)))
+  (exec (append "rm -rf " dst)))
+
 ;; copy the src folder to dst/src recursively
 ;; both src and dst must be existing folders, otherwise an exception will be thrown out
 ;; it doesn't matter whether src and dst arguments are ended with / or not
@@ -25,14 +31,9 @@
     (if (file? d)
 	(remove-folder d))
     )
-  (exec (append "cp -r " src " " dst))
-  )
+  (exec (append "cp -r " src " " dst)))
 
-(define (remove-folder dst)
-  (unless (file? dst) (throw-error (append "dst folder doesn't exist, dst:" dst)))
-  (unless (directory? dst) (throw-error (append "dst is not a directory, dst:" dst)))
-  (exec (append "rm -rf " dst))
-  )
+
 
 (define (create-link src dst)
   (if (file? dst) (rm dst)
