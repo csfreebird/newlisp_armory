@@ -25,6 +25,9 @@
   (unless (directory? src) (throw-error (append "src is not a directory, src:" src)))
   (unless (file? dest) (throw-error (append "dest folder doesn't exist, dest:" dest)))
   (unless (directory? dest) (throw-error (append "dest is not a directory, dest:" dest)))
+  (let (d (append dest "/" (folder-name src)))
+    (if (file? d)
+	(remove-folder d)))
   (exec (append "ROBOCOPY " src " " dest " *.* /E")))
 
 (define (remove-folder dst)

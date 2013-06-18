@@ -12,31 +12,30 @@
   (if (ends-with path "/")
       (replace "/$" path "" 0) path))
 
-;; throw error if dst is invalid
-(define (remove-folder dst)
-  (unless (file? dst) (throw-error (append "dst folder doesn't exist, dst:" dst)))
-  (unless (directory? dst) (throw-error (append "dst is not a directory, dst:" dst)))
-  (exec (append "rm -rf " dst)))
+;; throw error if dest is invalid
+(define (remove-folder dest)
+  (unless (file? dest) (throw-error (append "dest folder doesn't exist, dest:" dest)))
+  (unless (directory? dest) (throw-error (append "dest is not a directory, dest:" dest)))
+  (exec (append "rm -rf " dest)))
 
-;; copy the src folder to dst/src recursively
-;; both src and dst must be existing folders, otherwise an exception will be thrown out
-;; it doesn't matter whether src and dst arguments are ended with / or not
-;; if dst/src does exist before copying, it will be removed first
-(define (copy-folder src dst)
+;; copy the src folder to dest/src recursively
+;; both src and dest must be existing folders, otherwise an exception will be thrown out
+;; it doesn't matter whether src and dest arguments are ended with / or not
+;; if dest/src does exist before copying, it will be removed first
+(define (copy-folder src dest)
   (unless (file? src) (throw-error (append "src folder doesn't exist, src:" src)))
   (unless (directory? src) (throw-error (append "src is not a directory, src:" src)))
-  (unless (file? dst) (throw-error (append "dst folder doesn't exist, dst:" dst)))
-  (unless (directory? dst) (throw-error (append "dst is not a directory, dst:" dst)))
-  (let (d (append dst "/" (folder-name src)))
+  (unless (file? dest) (throw-error (append "dest folder doesn't exist, dest:" dest)))
+  (unless (directory? dest) (throw-error (append "dest is not a directory, dest:" dest)))
+  (let (d (append dest "/" (folder-name src)))
     (if (file? d)
-	(remove-folder d))
-    )
-  (exec (append "cp -r " src " " dst)))
+	(remove-folder d)))
+  (exec (append "cp -r " src " " dest)))
 
 
 
-(define (create-link src dst)
-  (if (file? dst) (rm dst)
-      (exec (append "ln -s " src " " dst))))
+(define (create-link src dest)
+  (if (file? dest) (rm dest)
+      (exec (append "ln -s " src " " dest))))
 
 
