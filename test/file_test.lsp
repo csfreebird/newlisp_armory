@@ -52,4 +52,12 @@
 (println (append "file-name test succeeded, file name is: " fname))
 (print-seperator-line)
 
+(println "test remove-last-seperator ...")
+(unless (catch (set 'fpath (file:remove-last-seperator (append (real-path) "/"))) 'result)
+	(println (append "catch error: " result))
+	(println "test failed"))
+(println (append "remove-last-seperator test succeeded, path is: " fpath))
+(print-seperator-line)
+
+
 (exit)
