@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "HTML 4.01 Transitional">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>file.lsp</title>
+
+<link rel="stylesheet" type="text/css" href="newlispdoc.css" />
+</head>
+
+<body style="margin: 20px;" text="#111111" bgcolor="#FFFFFF" 
+            link="#376590" vlink="#551A8B" alink="#ffAA28">
+<blockquote>
+<center><h1>file.lsp</h1></center>
+<p><a href="index.html">Module index</a></p> file.lsp
+
+<br/>
+<h2>Module:&nbsp;file</h2><p>file module provides some file operations on both Ubuntu and Windows</p>
+<b>Location: </b><a href="file.lsp">file.lsp</a><br/>
+<b>Version: </b>1.0<br/>
+<b>Author: </b>Dean Chen<br/>
+<b>Example:</b><blockquote><pre> (let ((test-dir1 (append (real-path) file:file-seperator "a")) (test-dir2 (append (real-path) file:file-seperator "b")))
+   (make-dir test-dir1)
+   (make-dir test-dir2)
+   (if (directory? test-dir1)
+       (begin
+ 	(unless (catch (file:copy-folder test-dir1 test-dir2) 'result)
+ 		(println (append "catch error: " result))
+ 		(println "test copy-folder failed"))
+ 	(file:remove-folder test-dir1)
+ 	(file:remove-folder test-dir2))))</pre></blockquote>
+<br/><br/><center>&sect;</center><br/>
+<a name="file_init"></a><h3><font color=#CC0000>file:init</font></h3>
+<b>syntax: (<font color=#CC0000>file:init</font>)</b><br/>
+<b>Throw: </b>Throw error if environment variable NEWLISP_ARMORY_HOME does not exist or is invalid<br/>
+<b>Throw: </b>Throw error if OS is not Windows or UBuntu<br/>
+<b>Note: </b>init function will be called automatically when loading file.lsp module, don't call it manually<br/>
+
+
+<br/><br/><center>&sect;</center><br/>
+<a name="file_folder-name"></a><h3><font color=#CC0000>file:folder-name</font></h3>
+<b>syntax: (<font color=#CC0000>file:folder-name</font> folder-path)</b><br/>
+<b>parameter: </b>folder-path - The full path of one folder.<br/>
+<p><b>return: </b>Return the folder name</p>
+<b>Throw: </b>Throw error if folder-path does not points to one valid directory<br/>
+
+<br/><br/><center>&sect;</center><br/>
+<a name="file_file-name"></a><h3><font color=#CC0000>file:file-name</font></h3>
+<b>syntax: (<font color=#CC0000>file:file-name</font> folder-path)</b><br/>
+<b>parameter: </b>full-path - The full path of one file.<br/>
+<p><b>return: </b>Return the file name</p>
+<b>Throw: </b>Throw error if file-path points to one folder or non-existing file<br/>
+
+<br/><br/><center>&sect;</center><br/>
+<a name="file_remove-last-seperator"></a><h3><font color=#CC0000>file:remove-last-seperator</font></h3>
+<b>syntax: (<font color=#CC0000>file:remove-last-seperator</font> path)</b><br/>
+<b>parameter: </b>path - The full path<br/>
+<p><b>return: </b>Return the full path which is not ended with file-seperator, e.g /opt</p>
+
+<br/><br/><center>&sect;</center><br/>
+<a name="file_remove-folder"></a><h3><font color=#CC0000>file:remove-folder</font></h3>
+<b>syntax: (<font color=#CC0000>file:remove-folder</font> dest)</b><br/>
+<b>parameter: </b>dest - The full path of folder<br/>
+<b>Throw: </b>Throw error if dest is invalid<br/>
+
+<br/><br/><center>&sect;</center><br/>
+<a name="file_copy-folder"></a><h3><font color=#CC0000>file:copy-folder</font></h3>
+<b>syntax: (<font color=#CC0000>file:copy-folder</font> src dest)</b><br/>
+<b>parameter: </b>src - The full path of src folder<br/>
+<b>parameter: </b>dest - The full path of dest folder<br/>
+<b>Throw: </b>Throw error either src or dest is not valid folder<br/>
+<b>Note: </b>it doesn't matter whether src and dest arguments are ended with file-seperator or not<br/>
+ if dest/src does exist before copying, it will be removed first
+
+<br/><br/><center>&sect;</center><br/>
+<a name="file_file-seperator"></a><h3><font color=#CC0000>file:file-seperator</font></h3>
+<b>syntax: (<font color=#CC0000>file:file-seperator</font>)</b><br/>
+<b>Note: </b>the value is different on Windows and Ubuntu<br/>
+ Windows "\\"
+ Ubuntu "/"
+
+<br/><br/><center>- &part; -</center><br/>
+<center><font face='Arial' size='-2' color='#444444'>
+generated with <a href="http://newlisp.org">newLISP</a>&nbsp;
+and <a href="http://newlisp.org/newLISPdoc.html">newLISPdoc</a>
+</font></center>
+</blockquote>
+</body>
+</html>
