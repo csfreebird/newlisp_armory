@@ -53,4 +53,4 @@
 ;; Windows "\\"
 ;; Ubuntu "/"
 (set 'file-seperator "/")
-(global 'file-seperator)
+

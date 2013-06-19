@@ -41,4 +41,4 @@
       throw-error "we do not support create-link on windows for now"))
 
 (set 'file-seperator "\\")
-(global 'file-seperator)
+
