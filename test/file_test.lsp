@@ -79,5 +79,32 @@
 	(println "remove-folder failed"))))
 (print-seperator-line)
 
+(println "test copy-folder ...")
+(unless (catch (file:copy-folder (append (real-path) "/a") (append (real-path) "/a")) 'result)
+	(println (append "catch error: " result))
+	(println "test non-existing src folder succeeded"))
+(print-seperator-line)
+
+(let ((test-dir1 (append (real-path) "/a")) (test-dir2 (append (real-path) "/b")))
+  (make-dir test-dir1)
+  (if (directory? test-dir1)
+      (unless (catch (file:copy-folder test-dir1 test-dir2) 'result)
+	      (println (append "catch error: " result))
+	      (println "test non-existing dst folder succeeded"))))
+(print-seperator-line)
+
+(let ((test-dir1 (append (real-path) "/a")) (test-dir2 (append (real-path) "/b")))
+  (make-dir test-dir1)
+  (make-dir test-dir2)
+  (if (directory? test-dir1)
+      (begin
+	(unless (catch (file:copy-folder test-dir1 test-dir2) 'result)
+		(println (append "catch error: " result))
+		(println "test copy-folder failed"))
+	(file:remove-folder test-dir1)
+	(file:remove-folder test-dir2))))
+
+(println "test copy-folder succeeded")
+(print-seperator-line)
 
 (exit)
