@@ -39,3 +39,6 @@
 (define (create-link src dst)
   (if (file? dst) (rm dst)
       throw-error "we do not support create-link on windows for now"))
+
+(set 'file-seperator "\\")
+(global 'file-seperator)

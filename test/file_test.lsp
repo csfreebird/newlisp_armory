@@ -67,7 +67,7 @@
 (print-seperator-line)
 
 (println "test remove-folder ...")
-(let (test-dir (append (real-path) "/tt"))
+(let (test-dir (append (real-path) file:file-seperator "tt"))
   (make-dir test-dir)
   (if (directory? test-dir)
       (begin
@@ -80,12 +80,12 @@
 (print-seperator-line)
 
 (println "test copy-folder ...")
-(unless (catch (file:copy-folder (append (real-path) "/a") (append (real-path) "/a")) 'result)
+(unless (catch (file:copy-folder (append (real-path) file:file-seperator "a") (append (real-path) file:file-seperator "a")) 'result)
 	(println (append "catch error: " result))
 	(println "test non-existing src folder succeeded"))
 (print-seperator-line)
 
-(let ((test-dir1 (append (real-path) "/a")) (test-dir2 (append (real-path) "/b")))
+(let ((test-dir1 (append (real-path) file:file-seperator "a")) (test-dir2 (append (real-path) file:file-seperator "b")))
   (make-dir test-dir1)
   (if (directory? test-dir1)
       (unless (catch (file:copy-folder test-dir1 test-dir2) 'result)
@@ -93,7 +93,7 @@
 	      (println "test non-existing dst folder succeeded"))))
 (print-seperator-line)
 
-(let ((test-dir1 (append (real-path) "/a")) (test-dir2 (append (real-path) "/b")))
+(let ((test-dir1 (append (real-path) file:file-seperator "a")) (test-dir2 (append (real-path) file:file-seperator "b")))
   (make-dir test-dir1)
   (make-dir test-dir2)
   (if (directory? test-dir1)

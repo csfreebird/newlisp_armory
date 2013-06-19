@@ -32,10 +32,9 @@
 	(remove-folder d)))
   (exec (append "cp -r " src " " dest)))
 
-
-
 (define (create-link src dest)
   (if (file? dest) (rm dest)
       (exec (append "ln -s " src " " dest))))
 
-
+(set 'file-seperator "/")
+(global 'file-seperator)
