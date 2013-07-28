@@ -54,3 +54,11 @@
 ;; Ubuntu "/"
 (set 'file-seperator "/")
 
+;; @syntax (file:clean-folder folder-path)
+;; @param full-path The full path of one file.
+;; @throw Throw error if file-path points to one folder or non-existing file
+;; @note only implement Ubuntu version for now
+(define (clean-folder folder-path)
+  (unless (file? folder-path) (throw-error (append "folder-path folder doesn't exist, folder-path:" folder-path)))
+  (unless (directory? folder-path) (throw-error (append "folder-path is not a directory, folder-path:" folder-path)))
+  (exec (append "rm -rf " folder-path "/*")))

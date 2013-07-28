@@ -6,6 +6,8 @@
 ;; @version 1.0
 ;; @author Dean Chen
 ;; @example
+;; (env "NEWLISP_ARMORY_HOME" "/home/dean/github/newlisp_armory")
+;; (file:init)
 ;; (let ((test-dir1 (append (real-path) file:file-seperator "a")) (test-dir2 (append (real-path) file:file-seperator "b")))
 ;;   (make-dir test-dir1)
 ;;   (make-dir test-dir2)
@@ -65,6 +67,11 @@
 ;; @throw Throw error either src or dest is not valid folder
 ;; @note it doesn't matter whether src and dest arguments are ended with file-seperator or not
 ;; if dest/src does exist before copying, it will be removed first
+
+;; @syntax (file:clean-folder folder-path)
+;; @param full-path The full path of one file.
+;; @throw Throw error if file-path points to one folder or non-existing file
+;; @note only implement Ubuntu version for now
 
 ;; @syntax (file:file-seperator)
 ;; @note the value is different on Windows and Ubuntu

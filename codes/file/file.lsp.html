@@ -18,7 +18,9 @@
 <b>Location: </b><a href="file.lsp">file.lsp</a><br/>
 <b>Version: </b>1.0<br/>
 <b>Author: </b>Dean Chen<br/>
-<b>Example:</b><blockquote><pre> (let ((test-dir1 (append (real-path) file:file-seperator "a")) (test-dir2 (append (real-path) file:file-seperator "b")))
+<b>Example:</b><blockquote><pre> (env "NEWLISP_ARMORY_HOME" "/home/dean/github/newlisp_armory")
+ (file:init)
+ (let ((test-dir1 (append (real-path) file:file-seperator "a")) (test-dir2 (append (real-path) file:file-seperator "b")))
    (make-dir test-dir1)
    (make-dir test-dir2)
    (if (directory? test-dir1)
@@ -70,6 +72,13 @@
 <b>Throw: </b>Throw error either src or dest is not valid folder<br/>
 <b>Note: </b>it doesn't matter whether src and dest arguments are ended with file-seperator or not<br/>
  if dest/src does exist before copying, it will be removed first
+
+<br/><br/><center>&sect;</center><br/>
+<a name="file_clean-folder"></a><h3><font color=#CC0000>file:clean-folder</font></h3>
+<b>syntax: (<font color=#CC0000>file:clean-folder</font> folder-path)</b><br/>
+<b>parameter: </b>full-path - The full path of one file.<br/>
+<b>Throw: </b>Throw error if file-path points to one folder or non-existing file<br/>
+<b>Note: </b>only implement Ubuntu version for now<br/>
 
 <br/><br/><center>&sect;</center><br/>
 <a name="file_file-seperator"></a><h3><font color=#CC0000>file:file-seperator</font></h3>
